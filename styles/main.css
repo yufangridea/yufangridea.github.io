@@ -974,3 +974,60 @@ td {
 .hljs-strong {
   font-weight: bold;
 }
+
+      .post-container .post .post-title {
+        text-align: center;
+      }
+      .post-container .post .post-info {
+        text-align: center;
+      }
+      .post-detail .post .post-title {
+        text-align: center;
+      }
+      .post-detail .post .post-info {
+        text-align: center;
+      }
+    
+      body {
+        font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Droid Sans Fallback','Microsoft YaHei',sans-serif;
+      }
+    
+		.main-content {
+		    padding: 0!important;
+		}
+		.post-detail .post .post-content p {
+		    line-height: 1.9;
+		    margin-bottom: 1.25em;
+		    letter-spacing: 0.013rem;
+		}
+		.post-detail .post .post-content h1, .post-detail .post .post-content h2, .post-detail .post .post-content h3, .post-detail .post .post-content h4, .post-detail .post .post-content h5, .post-detail .post .post-content h6 {
+		    margin: 18px 0;
+		    padding-top: 18px;
+		}
+		.post-detail .post .post-content p code, .post-detail .post .post-content li code {
+		    color: #202020;
+		    letter-spacing: 0;
+		    padding: 0.3em 0.4em;
+		    border-radius: 0.1875rem;
+		    background-color: rgba(0,0,0,0.03);
+		}
+		.hljs {
+		    background: #F1F3F3;
+		    color: #4d4d4c;
+		}
+		.post-detail .post .post-content pre code {
+		    font-size: 0.83em;
+		    padding: 0.9em 1.4em;
+		}
+		.post-detail .post .post-content pre {
+		    white-space: pre-wrap;
+		    white-space: -moz-pre-wrap;
+		    white-space: -o-pre-wrap;
+		    word-break: break-all;
+		    word-wrap: break-word;
+		    overflow-x: hidden;
+		}
+		body {
+		    color: #333;
+		}
+	

@@ -1,0 +1,275 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gridea 使用远程 SFTP 搭建静态博客 | Gridea</title>
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/jys11111/jys@main/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://yufangridea.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Gridea 使用远程 SFTP 搭建静态博客 | Gridea - Atom Feed" href="https://yufangridea.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<script src="https://cdn.jsdelivr.net/gh/jys11111/jys@main/waline/Waline.min.js"></script>
+
+
+
+    <meta name="description" content="🤓第一次用静态博客，感觉不错哇！
+👉记录下用 SFTP 方式搭建 Gridea
+💥💥💥
+
+可以直接用 root 用户，不过太危险了，推荐按以下方式创建一个限制权限的新用户。
+1️⃣ 使用 groupadd 命令给 sftp 创建一..." />
+    <meta name="keywords" content="Gridea" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://yufangridea.github.io">
+  <img class="avatar" src="https://cdn.jsdelivr.net/gh/jys11111/jys@main/myavatar.jpg" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Gridea 使用远程 SFTP 搭建静态博客
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-12-09
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://yufangridea.github.io/tag/P4HR_FhvH/" class="post-tag">
+                  # Gridea
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://yufangridea.github.io/post-images/gride-sftp-da-jian-jing-tai-bo-ke.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>🤓第一次用静态博客，感觉不错哇！</p>
+<p>👉记录下用 SFTP 方式搭建 Gridea</p>
+<p>💥💥💥</p>
+<!-- more -->
+<p><em>可以直接用 root 用户，不过太危险了，推荐按以下方式创建一个限制权限的新用户。</em></p>
+<h2 id="1️⃣-使用-groupadd-命令给-sftp-创建一个组">1️⃣ 使用 groupadd 命令给 sftp 创建一个组</h2>
+<p>打开终端，ssh连接到服务器。</p>
+<p>使用下面的 groupadd 命令创建一个名为的 sftp_users 组：</p>
+<pre><code>groupadd sftp_users
+</code></pre>
+<h2 id="2️⃣-添加用户到组-sftp_users-并设置权限">2️⃣ 添加用户到组 sftp_users 并设置权限</h2>
+<p>假设你想创建新的用户<code>gridea</code>，并且想添加该用户到 <code>sftp_users</code> 组中，那么运行下面的命令，</p>
+<pre><code class="language-objectivec">useradd -m -G sftp_users gridea
+</code></pre>
+<p>使用下面的 <code>chpasswd</code> 命令设置密码：</p>
+<pre><code class="language-ruby">echo &quot;gridea:&lt;输入密码&gt;&quot; | chpasswd
+</code></pre>
+<p>现在设置用户所需的权限：</p>
+<pre><code class="language-ruby">chown root /home/gridea
+</code></pre>
+<p>在家目录中创建一个上传目录，并设置正确地所有权：</p>
+<pre><code>mkdir /home/gridea/upload
+chown gridea /home/gridea/upload
+</code></pre>
+<h2 id="3️⃣-编辑-sftp-配置文件-etcsshsshd_config">3️⃣ 编辑 sftp 配置文件 /etc/ssh/sshd_config</h2>
+<p>sftp 操作是通过 ssh 完成的，所以它的配置文件是 /etc/ssh/sshd_config，在做任何更改前，建议首先备份文件，然后再编辑该文件，接下来添加下面的内容：</p>
+<pre><code>cp /etc/ssh/sshd_config /etc/ssh/sshd_config-org
+vim /etc/ssh/sshd_config
+
+
+#注释这行Subsystem      sftp    /usr/lib/openssh/sftp-server
+
+#末尾添加下面几行
+Subsystem	sftp	internal-sftp
+Match Group sftp_users
+X11Forwarding no
+AllowTcpForwarding no
+ChrootDirectory %h
+ForceCommand internal-sftp
+</code></pre>
+<p>重新启动 <code>ssh</code> 服务：</p>
+<pre><code>systemctl restart sshd
+</code></pre>
+<h2 id="4️⃣-客户端配置">4️⃣ 客户端配置</h2>
+<figure data-type="image" tabindex="1"><img src="https://yufangridea.github.io/post-images/1639031021587.png" alt="" loading="lazy"></figure>
+<h2 id="5️⃣-nginx">5️⃣ Nginx</h2>
+<p>点击同步后，可以检查下是否上传成功。</p>
+<p>接着安装 Nginx，配置 <code>.conf</code> 文件。</p>
+<p>附：<br>
+Nginx <code>.conf</code>配置内容参考：</p>
+<pre><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name 009898.xyz;
+    return 301 https://$server_name:443$request_uri;
+}
+server {
+    listen       443 ssl http2;
+    listen       [::]:443 ssl http2;
+    server_name 009898.xyz;
+    charset utf-8;
+
+    # ssl配置
+    ssl_protocols TLSv1.1 TLSv1.2;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_ecdh_curve secp384r1;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    ssl_session_tickets off;
+    ssl_certificate /root/bbbb.pem;
+    ssl_certificate_key /root/bbbb.key;
+
+    root /home/gridea/upload;
+    location / {
+    }
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%EF%B8%8F%E2%83%A3-%E4%BD%BF%E7%94%A8-groupadd-%E5%91%BD%E4%BB%A4%E7%BB%99-sftp-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%BB%84">1️⃣ 使用 groupadd 命令给 sftp 创建一个组</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%88%B0%E7%BB%84-sftp_users-%E5%B9%B6%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90">2️⃣ 添加用户到组 sftp_users 并设置权限</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-%E7%BC%96%E8%BE%91-sftp-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-etcsshsshd_config">3️⃣ 编辑 sftp 配置文件 /etc/ssh/sshd_config</a></li>
+<li><a href="#4%EF%B8%8F%E2%83%A3-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE">4️⃣ 客户端配置</a></li>
+<li><a href="#5%EF%B8%8F%E2%83%A3-nginx">5️⃣ Nginx</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://yufangridea.github.io/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline({
+				el: '#waline',
+				login: 'disable',
+				copyright: false,
+				serverURL: 'https://od1nnf.deta.dev',
+			});
+		</script>
+
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://yufangridea.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yufangridea.github.io</id>
     <title>Gridea</title>
-    <updated>2021-12-09T01:44:59.102Z</updated>
+    <updated>2021-12-09T13:36:28.555Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yufangridea.github.io"/>
     <link rel="self" href="https://yufangridea.github.io/atom.xml"/>
@@ -10,6 +10,96 @@
     <logo>https://yufangridea.github.io/images/avatar.png</logo>
     <icon>https://yufangridea.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Gridea 使用远程 SFTP 搭建静态博客]]></title>
+        <id>https://yufangridea.github.io/post/gride-sftp-da-jian-jing-tai-bo-ke/</id>
+        <link href="https://yufangridea.github.io/post/gride-sftp-da-jian-jing-tai-bo-ke/">
+        </link>
+        <updated>2021-12-09T06:05:04.000Z</updated>
+        <summary type="html"><![CDATA[<p>🤓第一次用静态博客，感觉不错哇！</p>
+<p>👉记录下用 SFTP 方式搭建 Gridea</p>
+<p>💥💥💥</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>🤓第一次用静态博客，感觉不错哇！</p>
+<p>👉记录下用 SFTP 方式搭建 Gridea</p>
+<p>💥💥💥</p>
+<!-- more -->
+<p><em>可以直接用 root 用户，不过太危险了，推荐按以下方式创建一个限制权限的新用户。</em></p>
+<h2 id="1️⃣-使用-groupadd-命令给-sftp-创建一个组">1️⃣ 使用 groupadd 命令给 sftp 创建一个组</h2>
+<p>打开终端，ssh连接到服务器。</p>
+<p>使用下面的 groupadd 命令创建一个名为的 sftp_users 组：</p>
+<pre><code>groupadd sftp_users
+</code></pre>
+<h2 id="2️⃣-添加用户到组-sftp_users-并设置权限">2️⃣ 添加用户到组 sftp_users 并设置权限</h2>
+<p>假设你想创建新的用户<code>gridea</code>，并且想添加该用户到 <code>sftp_users</code> 组中，那么运行下面的命令，</p>
+<pre><code class="language-objectivec">useradd -m -G sftp_users gridea
+</code></pre>
+<p>使用下面的 <code>chpasswd</code> 命令设置密码：</p>
+<pre><code class="language-ruby">echo &quot;gridea:&lt;输入密码&gt;&quot; | chpasswd
+</code></pre>
+<p>现在设置用户所需的权限：</p>
+<pre><code class="language-ruby">chown root /home/gridea
+</code></pre>
+<p>在家目录中创建一个上传目录，并设置正确地所有权：</p>
+<pre><code>mkdir /home/gridea/upload
+chown gridea /home/gridea/upload
+</code></pre>
+<h2 id="3️⃣-编辑-sftp-配置文件-etcsshsshd_config">3️⃣ 编辑 sftp 配置文件 /etc/ssh/sshd_config</h2>
+<p>sftp 操作是通过 ssh 完成的，所以它的配置文件是 /etc/ssh/sshd_config，在做任何更改前，建议首先备份文件，然后再编辑该文件，接下来添加下面的内容：</p>
+<pre><code>cp /etc/ssh/sshd_config /etc/ssh/sshd_config-org
+vim /etc/ssh/sshd_config
+
+
+#注释这行Subsystem      sftp    /usr/lib/openssh/sftp-server
+
+#末尾添加下面几行
+Subsystem	sftp	internal-sftp
+Match Group sftp_users
+X11Forwarding no
+AllowTcpForwarding no
+ChrootDirectory %h
+ForceCommand internal-sftp
+</code></pre>
+<p>重新启动 <code>ssh</code> 服务：</p>
+<pre><code>systemctl restart sshd
+</code></pre>
+<h2 id="4️⃣-客户端配置">4️⃣ 客户端配置</h2>
+<figure data-type="image" tabindex="1"><img src="https://yufangridea.github.io/post-images/1639031021587.png" alt="" loading="lazy"></figure>
+<h2 id="5️⃣-nginx">5️⃣ Nginx</h2>
+<p>点击同步后，可以检查下是否上传成功。</p>
+<p>接着安装 Nginx，配置 <code>.conf</code> 文件。</p>
+<p>附：<br>
+Nginx <code>.conf</code>配置内容参考：</p>
+<pre><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name 009898.xyz;
+    return 301 https://$server_name:443$request_uri;
+}
+server {
+    listen       443 ssl http2;
+    listen       [::]:443 ssl http2;
+    server_name 009898.xyz;
+    charset utf-8;
+
+    # ssl配置
+    ssl_protocols TLSv1.1 TLSv1.2;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_ecdh_curve secp384r1;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    ssl_session_tickets off;
+    ssl_certificate /root/bbbb.pem;
+    ssl_certificate_key /root/bbbb.key;
+
+    root /home/gridea/upload;
+    location / {
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://yufangridea.github.io/post/hello-gridea/</id>

@@ -1030,4 +1030,12 @@ td {
 		body {
 		    color: #333;
 		}
+		#waline {
+			padding: 24px 32px;
+		}
+		@media (max-width: 600px) {
+			#waline {
+				padding: 16px;
+			}
+		}
 	

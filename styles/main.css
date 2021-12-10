@@ -992,6 +992,9 @@ td {
         font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Droid Sans Fallback','Microsoft YaHei',sans-serif;
       }
     
+		.post-container .post .post-abstract {
+			line-height: 1.9;
+		}
 		.main .main-content {
 		    padding: 0;
 		}

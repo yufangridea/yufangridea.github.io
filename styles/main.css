@@ -992,8 +992,8 @@ td {
         font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Droid Sans Fallback','Microsoft YaHei',sans-serif;
       }
     
-		.main-content {
-		    padding: 0!important;
+		.main .main-content {
+		    padding: 0;
 		}
 		.post-detail .post .post-content p {
 		    line-height: 1.9;
@@ -1037,6 +1037,18 @@ td {
 			#waline {
 				padding: 16px;
 			}
+		}
+		.classwaline .v[data-class=v] .vpanel {
+			margin: 0.5em 0;
+		}
+		.classwaline .v[data-class=v] .vcount {
+			padding: 0.375em 0;
+		}
+		.classwaline .v[data-class=v] .vcards .vitem {
+			padding: 0.5em 0;
+		}
+		:root {
+			--waline-avatar-size: 5.25rem!important;
 		}
 	
       .classwaline .v[data-class=v] .vpanel {

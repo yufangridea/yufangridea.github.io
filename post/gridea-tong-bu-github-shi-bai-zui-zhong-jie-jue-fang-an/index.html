@@ -2,21 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Gridea 使用远程 Github Pages 搭建静态博客 | Mark</title>
+<title>Gridea 同步 Github 失败最终解决方案 | Mark</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/jys11111/jys@main/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://009898.xyz/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Gridea 使用远程 Github Pages 搭建静态博客 | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Gridea 同步 Github 失败最终解决方案 | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 <script src="https://cdn.jsdelivr.net/gh/jys11111/jys@main/waline/Waline.min.js"></script>
 
 
 
-    <meta name="description" content="👀上次的 SFTP 需要自己有台服务器才行。
-😬这次来白嫖 Github Pages 搭建 gridea，Github 在国内访问有时候不太好，必要时需要🪜。
-1. 创建一个Personal access tokens
-打开GitHu..." />
-    <meta name="keywords" content="Gridea" />
+    <meta name="description" content="Github 不仅有时候网页打不开，同步也不行💀
+这个解决方案来自 这里，感谢这位大佬👍
+你必须要有一个 Socks5，列如下面的：
+
+下载proxifier ，这个工具可以指定某个软件按照你的规则走
+Mac版本地址：https://w..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -78,7 +80,7 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Gridea 使用远程 Github Pages 搭建静态博客
+              Gridea 同步 Github 失败最终解决方案
             </h2>
             <div class="post-info">
               <span>
@@ -88,48 +90,27 @@
                 1 min read
               </span>
               
-                <a href="https://009898.xyz/tag/P4HR_FhvH/" class="post-tag">
-                  # Gridea
-                </a>
-              
             </div>
-            
-              <img class="post-feature-image" src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210144322.png" alt="">
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👀上次的 SFTP 需要自己有台服务器才行。</p>
-<p>😬这次来白嫖 Github Pages 搭建 gridea，Github 在国内访问有时候不太好，必要时需要🪜。</p>
-<h2 id="1-创建一个personal-access-tokens">1. 创建一个Personal access tokens</h2>
-<p>打开<a href="https://github.com/">GitHub</a>，登录 GitHub</p>
-<p>点击右上角 <strong>settings</strong> ，下拉在左侧找到  <strong>Developer settings</strong></p>
-<p>选择 <strong>Personal access tokens</strong> ，点击 <strong>Generate new token</strong> 的按钮，按照下图设置：</p>
-<figure data-type="image" tabindex="1"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210150413.png" alt="" loading="lazy"></figure>
-<p>💥💥💥<br>
-复制好 <strong>Personal access tokens</strong></p>
-<h2 id="2-创建仓库存储静态网页">2. 创建仓库存储静态网页</h2>
-<p>右上角 + 号， New repository，按照下图要点设置</p>
-<figure data-type="image" tabindex="2"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210153215.png" alt="" loading="lazy"></figure>
-<p>进到仓库，setting-pages，绑定自己的域名，并<strong>设置 cname 记录</strong></p>
-<figure data-type="image" tabindex="3"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210151246.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="4"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210151557.png" alt="" loading="lazy"></figure>
-<p>💥💥💥<br>
-Github 需要<strong>10 分钟</strong> 左右才能自动配置好证书！</p>
-<p>在 Gridea 填写域名，仓库名称等信息</p>
-<figure data-type="image" tabindex="5"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210152653.png" alt="" loading="lazy"></figure>
-<p>点击同步，访问你的域名，应该可以成功访问了！🎉</p>
+                <p>Github 不仅有时候网页打不开，同步也不行💀</p>
+<p>这个解决方案来自 <a href="https://www.luoyelusheng.com/post/Gridea%E5%90%8C%E6%AD%A5github%E5%A4%B1%E8%B4%A5%E6%9C%80%E7%BB%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">这里</a>，感谢这位大佬👍</p>
+<p>你必须要有一个 Socks5，列如下面的：</p>
+<figure data-type="image" tabindex="1"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210154632.png" alt="" loading="lazy"></figure>
+<p>下载<strong>proxifier</strong> ，这个工具可以指定某个软件按照你的规则走</p>
+<p>Mac版本地址：https://www.macwk.com/soft/proxifier<br>
+Window版本地址：https://www.hanzify.org/software/13717.html</p>
+<p>安装打开，顶部<code>配置文件-xx服务器-添加</code></p>
+<figure data-type="image" tabindex="2"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210154543.png" alt="" loading="lazy"></figure>
+<p><code>配置文件-xx规则-添加</code>，选择 Gridea.exe 的位置，到最后应该如下图：</p>
+<figure data-type="image" tabindex="3"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210154827.png" alt="" loading="lazy"></figure>
+<p><code>配置文件-名称解析-通过xx解析主机名称</code></p>
+<p>此时打开 Gridea，测试下~🎉</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#1-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AApersonal-access-tokens">1. 创建一个Personal access tokens</a></li>
-<li><a href="#2-%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E5%AD%98%E5%82%A8%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5">2. 创建仓库存储静态网页</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -138,9 +119,9 @@ Github 需要<strong>10 分钟</strong> 左右才能自动配置好证书！</p>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://009898.xyz/post/gride-sftp-da-jian-jing-tai-bo-ke/">
+            <a href="https://009898.xyz/post/gridea-shi-yong-yuan-cheng-github-pages-da-jian-jing-tai-bo-ke/">
               <h3 class="post-title">
-                Gridea 使用远程 SFTP 搭建静态博客
+                Gridea 使用远程 Github Pages 搭建静态博客
               </h3>
             </a>
           </div>

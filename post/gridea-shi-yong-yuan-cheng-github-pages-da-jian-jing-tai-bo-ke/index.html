@@ -14,7 +14,8 @@
 
     <meta name="description" content="👀上次的 SFTP 需要自己有台服务器才行。
 😬这次来白嫖 Github Pages 搭建 gridea，Github 在国内访问有时候不太好，必要时需要🪜。
-" />
+1. 创建一个Personal access tokens
+打开GitHu..." />
     <meta name="keywords" content="Gridea" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -99,10 +100,36 @@
               <div class="post-content">
                 <p>👀上次的 SFTP 需要自己有台服务器才行。</p>
 <p>😬这次来白嫖 Github Pages 搭建 gridea，Github 在国内访问有时候不太好，必要时需要🪜。</p>
+<h2 id="1-创建一个personal-access-tokens">1. 创建一个Personal access tokens</h2>
+<p>打开<a href="https://github.com/">GitHub</a>，登录 GitHub</p>
+<p>点击右上角 <strong>settings</strong> ，下拉在左侧找到  <strong>Developer settings</strong></p>
+<p>选择 <strong>Personal access tokens</strong> ，点击 <strong>Generate new token</strong> 的按钮，按照下图设置：</p>
+<figure data-type="image" tabindex="1"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210150413.png" alt="" loading="lazy"></figure>
+<p>💥💥💥<br>
+复制好 <strong>Personal access tokens</strong></p>
+<h2 id="2-创建仓库存储静态网页">2. 创建仓库存储静态网页</h2>
+<p>右上角 + 号， New repository，按照下图要点设置</p>
+<figure data-type="image" tabindex="2"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210151117.png" alt="" loading="lazy"></figure>
+<p>进到仓库，setting-pages，绑定自己的域名，并设置 cname 记录</p>
+<figure data-type="image" tabindex="3"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210151246.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210151557.png" alt="" loading="lazy"></figure>
+<p>💥💥💥<br>
+Github 需要<strong>10 分钟</strong> 左右才能自动配置好证书！</p>
+<p>在 Gridea 填写域名，仓库名称等信息，同步</p>
+<figure data-type="image" tabindex="5"><img src="https://yufanboke-1252335011.file.myqcloud.com/PicGo/20211210152653.png" alt="" loading="lazy"></figure>
+<p>访问你的域名，应该可以成功访问了！🎉</p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AApersonal-access-tokens">1. 创建一个Personal access tokens</a></li>
+<li><a href="#2-%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E5%AD%98%E5%82%A8%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5">2. 创建仓库存储静态网页</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>

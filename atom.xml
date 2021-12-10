@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://009898.xyz</id>
     <title>Mark</title>
-    <updated>2021-12-10T07:54:56.500Z</updated>
+    <updated>2021-12-10T08:01:11.520Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://009898.xyz"/>
     <link rel="self" href="https://009898.xyz/atom.xml"/>
@@ -16,6 +16,12 @@
         <link href="https://009898.xyz/post/gridea-shi-yong-yuan-cheng-github-pages-da-jian-jing-tai-bo-ke/">
         </link>
         <updated>2021-12-10T06:40:15.000Z</updated>
+        <summary type="html"><![CDATA[<p>👀上次的 SFTP 需要自己有台服务器才行。</p>
+<p>😬这次来白嫖 Github Pages 搭建 gridea</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👀上次的 SFTP 需要自己有台服务器才行。</p>
+<p>😬这次来白嫖 Github Pages 搭建 gridea</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Gridea 使用远程 SFTP 搭建静态博客]]></title>

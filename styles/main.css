@@ -1042,4 +1042,14 @@ td {
       .classwaline .v[data-class=v] .vpanel {
     margin: 0.5em 0;
 }
+.classwaline .v[data-class=v] .vcount {
+    padding: 0.375em 0;
+}
+.classwaline .v[data-class=v] .vcards .vitem {
+    padding: 0.5em 0;
+}
+:root {
+  --waline-avatar-size: 5.25rem;
+  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
+}
     

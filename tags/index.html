@@ -84,6 +84,16 @@
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
 
       </div>
     </div>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://009898.xyz</id>
+    <title>Mark</title>
+    <updated>2022-07-24T09:30:04.105Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://009898.xyz"/>
+    <link rel="self" href="https://009898.xyz/atom.xml"/>
+    <subtitle>We can&apos;t help ourselves. Just gotta hold on. The sun will shine through.</subtitle>
+    <logo>https://009898.xyz/images/avatar.png</logo>
+    <icon>https://009898.xyz/favicon.ico</icon>
+    <rights>All rights reserved 2022, Mark</rights>
+    <entry>
+        <title type="html"><![CDATA[佳能 IP2880S 喷墨打印机问题记录]]></title>
+        <id>https://009898.xyz/post/jia-neng-ip2880s-pen-mo-da-yin-ji-wen-ti-ji-lu/</id>
+        <link href="https://009898.xyz/post/jia-neng-ip2880s-pen-mo-da-yin-ji-wen-ti-ji-lu/">
+        </link>
+        <updated>2022-07-11T12:40:46.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[兄弟 HL-2240 激光打印机遇到的问题记录]]></title>
+        <id>https://009898.xyz/post/xiong-di-hl-2240-ji-guang-da-yin-ji-yu-dao-de-wen-ti-ji-lu/</id>
+        <link href="https://009898.xyz/post/xiong-di-hl-2240-ji-guang-da-yin-ji-yu-dao-de-wen-ti-ji-lu/">
+        </link>
+        <updated>2022-07-06T10:01:09.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[如何在Ubuntu 20.04 LTS上禁用自动更新]]></title>
+        <id>https://009898.xyz/post/ru-he-zai-ubuntu-2004-lts-shang-jin-yong-zi-dong-geng-xin/</id>
+        <link href="https://009898.xyz/post/ru-he-zai-ubuntu-2004-lts-shang-jin-yong-zi-dong-geng-xin/">
+        </link>
+        <updated>2022-05-03T04:47:05.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[racknerd virmach 过 google 谷歌验证，过 P 站 Pornhub 过玉米]]></title>
+        <id>https://009898.xyz/post/racknerd-virmach-deng-cf-guan-fang-warpguo-gu-ge-yan-zheng-guo-yu-mi-shang-p-zhan-pornhub/</id>
+        <link href="https://009898.xyz/post/racknerd-virmach-deng-cf-guan-fang-warpguo-gu-ge-yan-zheng-guo-yu-mi-shang-p-zhan-pornhub/">
+        </link>
+        <updated>2022-04-21T11:57:47.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git]]></title>
+        <id>https://009898.xyz/post/git/</id>
+        <link href="https://009898.xyz/post/git/">
+        </link>
+        <updated>2022-04-17T12:56:18.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vnstat 流量统计（2.8版本）安装教程]]></title>
+        <id>https://009898.xyz/post/vnstat-liu-liang-tong-ji-28-ban-ben/</id>
+        <link href="https://009898.xyz/post/vnstat-liu-liang-tong-ji-28-ban-ben/">
+        </link>
+        <updated>2022-04-15T07:51:26.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SSL 证书监控 php]]></title>
+        <id>https://009898.xyz/post/ssl-zheng-shu-jian-kong-php/</id>
+        <link href="https://009898.xyz/post/ssl-zheng-shu-jian-kong-php/">
+        </link>
+        <updated>2022-04-10T06:57:22.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[在Debian 10上安装GNOME桌面（图形化界面）]]></title>
+        <id>https://009898.xyz/post/zai-debian-10-shang-an-zhuang-gnome-zhuo-mian-tu-xing-hua-jie-mian/</id>
+        <link href="https://009898.xyz/post/zai-debian-10-shang-an-zhuang-gnome-zhuo-mian-tu-xing-hua-jie-mian/">
+        </link>
+        <updated>2022-04-09T05:35:08.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust 版 ServerStatus 云探针]]></title>
+        <id>https://009898.xyz/post/rust-ban-serverstatus-yun-tan-zhen/</id>
+        <link href="https://009898.xyz/post/rust-ban-serverstatus-yun-tan-zhen/">
+        </link>
+        <updated>2022-04-07T10:57:40.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[冒险岛079 Linux]]></title>
+        <id>https://009898.xyz/post/mou-xian-dao-079-linux/</id>
+        <link href="https://009898.xyz/post/mou-xian-dao-079-linux/">
+        </link>
+        <updated>2022-03-11T12:21:50.000Z</updated>
+    </entry>
+</feed>

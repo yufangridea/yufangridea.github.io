@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//mongobdwaline.vercel.app" />
+<link rel="dns-prefetch" href="//imgcdn.009898.xyz" />
+<link rel="dns-prefetch" href="//libravatar-proxy.009898.xyz" />
+<link rel="dns-prefetch" href="//cdn.staticfile.org" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Docker 安装 PHP 7.4 | Mark</title>
+<link rel="shortcut icon" href="https://009898.xyz/favicon.ico">
+<!-- <link href="https://gcore.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://009898.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Docker 安装 PHP 7.4 | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<!-- <link rel="stylesheet" href="https://009898.xyz/fontfamily.css?family=Droid+Serif:400,700"> -->
+<script src="https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.js"></script>
+<link href='https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.css' rel='stylesheet' />
+
+<style>
+.wl-emoji-popup button{
+    width: 32px;
+    margin: 5px;
+    height: 32px;
+}
+.wl-emoji-popup .wl-emoji {
+    max-width: 24px;
+    max-height: 24px;
+}
+</style>
+
+
+
+    <meta name="description" content="
+2021/12/31 更新
+找到这个 DNMP 一键安装 Nginx + MySQL + PHP7/5，不用自己配置了。
+
+如果还没有安装 Docker 和 Docker compose，参考之前的文章进行安装。
+安装 php7.4
+cd..." />
+    <meta name="keywords" content="PHP,Docker" />
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+	<!--代码复制-->
+	<script src="https://009898.xyz/highlightjs-copy-button.js"></script>
+	<script src="https://009898.xyz/highlightjs-copy-button.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://009898.xyz">
+  <img class="avatar" src="https://uniim1.shutterfly.com/render/00-qqXkq-YSXVDCUiEmPy1uRoVvZUPg3CUdaHSFKnp8vIi_641SthKh8AaW_nOVTCmiV7ntXQOewWgszVPDOQPWWw?cn=THISLIFE&res=large&ts=1639985127" alt="">
+  </a>
+  <h1 class="site-title">
+    Mark
+  </h1>
+  <p class="site-description">
+    We can't help ourselves. Just gotta hold on. The sun will shine through.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Docker 安装 PHP 7.4
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-12-25
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="https://009898.xyz/tag/6sXrMS6-R/" class="post-tag">
+                  # PHP
+                </a>
+              
+                <a href="https://009898.xyz/tag/1XIsoAJlo/" class="post-tag">
+                  # Docker
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://img.009898.xyz/i/2023/zbvf7e-0.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <!-- more -->
+<p><strong>2021/12/31 更新</strong><br>
+找到这个 <a href="https://github.com/yeszao/dnmp">DNMP</a> 一键安装 Nginx + MySQL + PHP7/5，不用自己配置了。</p>
+<hr>
+<p>如果还没有安装 Docker 和 Docker compose，参考之前的文章进行安装。</p>
+<h2 id="安装-php74">安装 php7.4</h2>
+<pre><code>cd /root
+mkdir php74
+cd php74
+docker pull php:7.4-fpm
+</code></pre>
+<p>在 php74 目录下创建 docker-compose.yml 内容如下：</p>
+<pre><code>version: &quot;3&quot;
+services:
+  php74:
+    image: php:7.4-fpm
+    container_name: php74
+    ports:
+      - 9000:9000
+    volumes:
+      - /usr/wwwhome/test:/var/www/test
+</code></pre>
+<p>解释：<br>
+/usr/wwwhome/test 是网站存放的地方 挂载到容器的 /var/www/test 目录，/var/www/test 这个目录后面 nginx 配置要用到。</p>
+<p>多个网站，记得添加 volumes ！</p>
+<p>启动容器：</p>
+<pre><code>cd /root/php74
+docker-compose up -d
+</code></pre>
+<h2 id="nginx-配置">nginx 配置：</h2>
+<p>参考这个进行修改</p>
+<pre><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name test.009898.xyz;
+    return 301 https://$server_name:443$request_uri;
+}
+server{
+    listen       443 ssl http2;
+    listen       [::]:443 ssl http2;
+    server_name test.009898.xyz;
+    charset utf-8;
+
+        # ssl配置
+    ssl_protocols TLSv1.1 TLSv1.2;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_ecdh_curve secp384r1;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    ssl_session_tickets off;
+    ssl_certificate /usr/local/etc/xray/bf.6666000.xyz.pem;
+    ssl_certificate_key /usr/local/etc/xray/bf.6666000.xyz.key;
+
+    index index.html index.htm index.php;
+    root /usr/wwwhome/test;
+
+    location / {
+         try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        root /usr/wwwhome/test;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /var/www/test$fastcgi_script_name;
+        include  fastcgi_params;
+    }
+}
+</code></pre>
+<p>解释：<br>
+location / 为 url 美化，具体可以百度。<br>
+location ~ .*\ 是进入 FastCGI 的处理程序。</p>
+<p>💥注意重点！<br>
+这一行 fastcgi_pass   127.0.0.1:9000;<br>
+这一行 fastcgi_param  SCRIPT_FILENAME ** /var/www/test**$fastcgi_script_name; 的加粗内容需要按照之前配置修改。不然会出现 File not found.</p>
+<p>其实比较推荐在 docker-compose.yml 的 volumes 这一行本地网站目录和容器目录设置成一样的！一样的话 /var/www/test$fastcgi_script_name 就可以改成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>o</mi><mi>c</mi><mi>u</mi><mi>m</mi><mi>e</mi><mi>n</mi><msub><mi>t</mi><mi>r</mi></msub><mi>o</mi><mi>o</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">document_root</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">o</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span></span></span></span>fastcgi_script_name</p>
+<p>我这是没有一样，只是为了理解过程。<br>
+<img src="https://img.009898.xyz/i/2023/za6oov-0.png" alt="" loading="lazy"></p>
+<p>网站存放目录：<br>
+/usr/wwwhome/test</p>
+<p>随便放个 php 测试下吧！</p>
+<h2 id="安装-php-拓展">安装 PHP 拓展：</h2>
+<pre><code>#进入容器
+#docker手动安装PHP7.4常用扩展命令
+docker-php-ext-install -j$(nproc) bcmath calendar exif gettext sockets dba mysqli pcntl pdo_mysql shmop sysvmsg sysvsem sysvshm
+
+apt-get update &amp;&amp; \
+apt-get install -y --no-install-recommends libzip-dev &amp;&amp; \
+rm -r /var/lib/apt/lists/* &amp;&amp; \
+docker-php-ext-install -j$(nproc) zip
+
+apt-get install -y --no-install-recommends libmcrypt-dev &amp;&amp; \
+rm -r /var/lib/apt/lists/* &amp;&amp; \
+pecl install mcrypt-1.0.3 &amp;&amp; \
+docker-php-ext-enable mcrypt
+
+pecl install redis-5.2.2 &amp;&amp; docker-php-ext-enable redis
+
+
+apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    &amp;&amp; docker-php-ext-configure gd --with-freetype --with-jpeg \
+    &amp;&amp; docker-php-ext-install -j$(nproc) gd
+
+#进入php容器
+docker exec -it php74 /bin/bash
+#相关依赖安装
+apt-get update &amp;&amp; apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev
+#安装mysqli
+docker-php-ext-install mysqli
+#安装常用扩展命令
+docker-php-ext-install -j$(nproc) bcmath calendar exif gettext sockets dba mysqli pcntl pdo_mysql shmop sysvmsg sysvsem sysvshm
+
+#安装完出现这一行，所有拓展就在以下目录：
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20190902/
+#查看拓展
+cd /usr/local/lib/php/extensions/no-debug-non-zts-20190902/
+dir
+#启动 redis 扩展
+docker-php-ext-enable redis
+#查看redis 扩展是否可以启动，返回 redis 就启动了
+php -m | grep redis
+
+
+#安装完成之后按 CTRL+D 退出容器，然后重启 php74 容器
+docker restart php74
+
+#安装PECL 扩展
+#因为一些扩展并不包含在 PHP 源码文件中，所有需要使用 PECL（PHP 的扩展库仓库，通过 PEAR 打包）。用 pecl install 安装扩展，然后再用官方提供的 docker-php-ext-enable 快捷脚本来启用扩展。PECL 扩展下载地址：https://pecl.php.net/
+#进入php容器
+docker exec -it php74 /bin/bash
+#相关依赖安装
+apt-get update &amp;&amp; apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev
+ #安装swoole拓展
+pecl install swoole-4.2.12
+ #启用swoole拓展
+docker-php-ext-enable swoole
+
+</code></pre>
+<p>没用 Redis 就别安装了，被当矿机了。。top 查看 CPU 占用 100 %，一查百度中病毒了。。</p>
+<p>kdevtmpfsi 病毒的产生，通常是因为 Redis 对外开放 6379端口，且没设置密码或者密码过于简单导致。</p>
+<p>所以服务器一定要设置好防火墙，像3306、6379 这种常用端口，尽量减少对外开放的机会。</p>
+<p>参考链接</p>
+<h2 id="phpini">php.ini</h2>
+<pre><code>#这个目录下的 ini 文件都会自动加载
+cd /usr/local/etc/php/conf.d
+
+vi upload.ini
+
+#写入一下内容
+upload_max_filesize=100M
+post_max_size=100M
+max_execution_time=120
+allow_url_fopen=ON
+
+
+echo 'extension=mcrypt.so' &gt; mcrypt.ini
+
+# CTRL+D 退出
+docker restart php74
+
+
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://img.009898.xyz/i/2023/zbgz5o.png" alt="" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85-php74">安装 php7.4</a></li>
+<li><a href="#nginx-%E9%85%8D%E7%BD%AE">nginx 配置：</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85-php-%E6%8B%93%E5%B1%95">安装 PHP 拓展：</a></li>
+<li><a href="#phpini">php.ini</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://009898.xyz/post/virmach-dd-chun-jing-xi-tong/">
+              <h3 class="post-title">
+                Virmach DD 纯净系统
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div class="classwaline" id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline.init({
+			  el: '#waline',
+			  serverURL: 'https://vercelwaline.009898.xyz',
+			  login: 'disable',
+			  copyright: false,
+			  imageUploader: false,
+			  emoji: [
+			    'https://nl.mark.nom.za/weibo',
+			  ],
+			});
+		</script>
+		
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://009898.xyz/atom.xml" target="_blank">
+<!-- 
+    <i class="ri-rss-line"></i>
+-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 12px;margin-bottom: 2px;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z"></path></svg> RSS
+  </a>
+</div>
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initCopyButtonOnLoad();
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
+
+  </body>
+</html>

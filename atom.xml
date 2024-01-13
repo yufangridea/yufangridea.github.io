@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://009898.xyz</id>
+    <title>Mark</title>
+    <updated>2024-01-13T05:06:50.920Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://009898.xyz"/>
+    <link rel="self" href="https://009898.xyz/atom.xml"/>
+    <subtitle>We can&apos;t help ourselves. Just gotta hold on. The sun will shine through.</subtitle>
+    <logo>https://009898.xyz/images/avatar.png</logo>
+    <icon>https://009898.xyz/favicon.ico</icon>
+    <rights>All rights reserved 2024, Mark</rights>
+    <entry>
+        <title type="html"><![CDATA[俄罗斯 IP 无法显示 Youtube 头像]]></title>
+        <id>https://009898.xyz/post/e-luo-si-ip-wu-fa-xian-shi-youtube-tou-xiang/</id>
+        <link href="https://009898.xyz/post/e-luo-si-ip-wu-fa-xian-shi-youtube-tou-xiang/">
+        </link>
+        <updated>2024-01-13T05:04:26.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[如何在Windows下访问ext4格式的硬盘？]]></title>
+        <id>https://009898.xyz/post/ru-he-zai-windows-xia-fang-wen-ext4-ge-shi-de-ying-pan/</id>
+        <link href="https://009898.xyz/post/ru-he-zai-windows-xia-fang-wen-ext4-ge-shi-de-ying-pan/">
+        </link>
+        <updated>2023-11-25T06:23:33.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[语录]]></title>
+        <id>https://009898.xyz/post/yu-lu/</id>
+        <link href="https://009898.xyz/post/yu-lu/">
+        </link>
+        <updated>2023-11-11T11:24:58.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PotPlayer外挂中英文双字幕及使用自动翻译教程]]></title>
+        <id>https://009898.xyz/post/potplayer-wai-gua-zhong-ying-wen-shuang-zi-mu-ji-shi-yong-zi-dong-fan-yi-jiao-cheng/</id>
+        <link href="https://009898.xyz/post/potplayer-wai-gua-zhong-ying-wen-shuang-zi-mu-ji-shi-yong-zi-dong-fan-yi-jiao-cheng/">
+        </link>
+        <updated>2023-08-11T15:49:26.000Z</updated>
+        <summary type="html"><![CDATA[<p>如何在播放视频的时候，挂载上中文字幕呢？</p>
+<p>Windows电脑播放器推荐：Potplayer</p>
+<p>Windows平台的播放器，推荐Potplayer，免费且功能强大。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>如何在播放视频的时候，挂载上中文字幕呢？</p>
+<p>Windows电脑播放器推荐：Potplayer</p>
+<p>Windows平台的播放器，推荐Potplayer，免费且功能强大。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[宝塔 SSL 证书自动续签失败]]></title>
+        <id>https://009898.xyz/post/bao-ta-ssl-zheng-shu-zi-dong-xu-qian-shi-bai/</id>
+        <link href="https://009898.xyz/post/bao-ta-ssl-zheng-shu-zi-dong-xu-qian-shi-bai/">
+        </link>
+        <updated>2022-09-03T14:27:55.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ShanaEncoder GPU 压制视频]]></title>
+        <id>https://009898.xyz/post/shanaencoder-gpu-ya-zhi-shi-pin/</id>
+        <link href="https://009898.xyz/post/shanaencoder-gpu-ya-zhi-shi-pin/">
+        </link>
+        <updated>2022-08-14T07:09:54.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[佳能 IP2880S 喷墨打印机问题记录]]></title>
+        <id>https://009898.xyz/post/jia-neng-ip2880s-pen-mo-da-yin-ji-wen-ti-ji-lu/</id>
+        <link href="https://009898.xyz/post/jia-neng-ip2880s-pen-mo-da-yin-ji-wen-ti-ji-lu/">
+        </link>
+        <updated>2022-07-11T12:40:46.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[兄弟 HL-2240 激光打印机遇到的问题记录]]></title>
+        <id>https://009898.xyz/post/xiong-di-hl-2240-ji-guang-da-yin-ji-yu-dao-de-wen-ti-ji-lu/</id>
+        <link href="https://009898.xyz/post/xiong-di-hl-2240-ji-guang-da-yin-ji-yu-dao-de-wen-ti-ji-lu/">
+        </link>
+        <updated>2022-07-06T10:01:09.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[如何在Ubuntu 20.04 LTS上禁用自动更新]]></title>
+        <id>https://009898.xyz/post/ru-he-zai-ubuntu-2004-lts-shang-jin-yong-zi-dong-geng-xin/</id>
+        <link href="https://009898.xyz/post/ru-he-zai-ubuntu-2004-lts-shang-jin-yong-zi-dong-geng-xin/">
+        </link>
+        <updated>2022-05-03T04:47:05.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[racknerd virmach 过 google 谷歌验证，过 P 站 Pornhub 过玉米]]></title>
+        <id>https://009898.xyz/post/racknerd-virmach-deng-cf-guan-fang-warpguo-gu-ge-yan-zheng-guo-yu-mi-shang-p-zhan-pornhub/</id>
+        <link href="https://009898.xyz/post/racknerd-virmach-deng-cf-guan-fang-warpguo-gu-ge-yan-zheng-guo-yu-mi-shang-p-zhan-pornhub/">
+        </link>
+        <updated>2022-04-21T11:57:47.000Z</updated>
+    </entry>
+</feed>

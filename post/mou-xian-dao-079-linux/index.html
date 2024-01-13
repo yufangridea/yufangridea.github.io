@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//mongobdwaline.vercel.app" />
+<link rel="dns-prefetch" href="//imgcdn.009898.xyz" />
+<link rel="dns-prefetch" href="//libravatar-proxy.009898.xyz" />
+<link rel="dns-prefetch" href="//cdn.staticfile.org" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冒险岛079 Linux | Mark</title>
+<link rel="shortcut icon" href="https://009898.xyz/favicon.ico">
+<!-- <link href="https://gcore.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://009898.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="冒险岛079 Linux | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<!-- <link rel="stylesheet" href="https://009898.xyz/fontfamily.css?family=Droid+Serif:400,700"> -->
+<script src="https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.js"></script>
+<link href='https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.css' rel='stylesheet' />
+
+<style>
+.wl-emoji-popup button{
+    width: 32px;
+    margin: 5px;
+    height: 32px;
+}
+.wl-emoji-popup .wl-emoji {
+    max-width: 24px;
+    max-height: 24px;
+}
+</style>
+
+
+
+    <meta name="description" content="整合网络教程
+测试系统为 Centos7.9 x64
+安装宝塔
+yum update -y
+yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/in..." />
+    <meta name="keywords" content="冒险岛" />
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+	<!--代码复制-->
+	<script src="https://009898.xyz/highlightjs-copy-button.js"></script>
+	<script src="https://009898.xyz/highlightjs-copy-button.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://009898.xyz">
+  <img class="avatar" src="https://uniim1.shutterfly.com/render/00-qqXkq-YSXVDCUiEmPy1uRoVvZUPg3CUdaHSFKnp8vIi_641SthKh8AaW_nOVTCmiV7ntXQOewWgszVPDOQPWWw?cn=THISLIFE&res=large&ts=1639985127" alt="">
+  </a>
+  <h1 class="site-title">
+    Mark
+  </h1>
+  <p class="site-description">
+    We can't help ourselves. Just gotta hold on. The sun will shine through.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              冒险岛079 Linux
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-03-11
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://009898.xyz/tag/Qei1c7_-v/" class="post-tag">
+                  # 冒险岛
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://img.009898.xyz/i/2023/zevev9-0.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>整合网络教程<br>
+测试系统为 Centos7.9 x64</p>
+<h2 id="安装宝塔">安装宝塔</h2>
+<pre><code>yum update -y
+yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh
+</code></pre>
+<h2 id="配置数据库">配置数据库</h2>
+<p>宝塔环境下安装<br>
+Nginx 1.2<br>
+MySQL 5.6<br>
+PHP 5.6<br>
+PHPmyadmin 4.4</p>
+<p>PHPmyadmin 创建数据库 mxd，导入 ms_20210813_234816.sql 文件</p>
+<p>下载服务端文件：</p>
+<pre><code>cd /home
+wget https://libravatar-proxy.12623443059407.workers.dev/?url=https://github.com/aoaostar/MapleStory/archive/refs/heads/master.zip
+unzip master.zip
+</code></pre>
+<p>修改一下 config 下面的 <strong>db.properties 文件中的数据库连接信息</strong>就行了<br>
+末尾添加 <code>&amp;zeroDateTimeBehavior=convertToNull</code><br>
+<img src="https://imgcdn.009898.xyz/img/20220312130443.png" alt="" loading="lazy"></p>
+<p>server.properties 是服务端的配置信息，修改如下<br>
+<img src="https://imgcdn.009898.xyz/img/20220312130405.png" alt="" loading="lazy"></p>
+<p>宝塔开放端口：9595、8600、2525~2530<br>
+开放完可以把防火墙关闭了</p>
+<p>开启数据库远程访问：<br>
+<img src="https://imgcdn.009898.xyz/img/20220312130149.png" alt="" loading="lazy"><br>
+<img src="https://imgcdn.009898.xyz/img/20220312130224.png" alt="" loading="lazy"><br>
+<img src="https://imgcdn.009898.xyz/img/20220312130255.png" alt="" loading="lazy"><br>
+<img src="https://imgcdn.009898.xyz/img/20220312130331.png" alt="" loading="lazy"></p>
+<h2 id="运行服务端">运行服务端</h2>
+<pre><code>yum install -y screen &amp;&amp; screen -S mxd
+
+cd /home/MapleStory-master
+./start.sh
+</code></pre>
+<h2 id="运行客户端">运行客户端</h2>
+<h3 id="客户端1我的-win10-只能用这个">客户端1（我的 Win10 只能用这个）</h3>
+<p>https://cloud.189.cn/web/share?code=I3AFneeUzAra（访问码：u2hf）</p>
+<h3 id="客户端2win10-有可能有问题我是没有运行成功">客户端2（Win10 有可能有问题，我是没有运行成功）</h3>
+<p>https://cloud.189.cn/web/share?code=FBJRbqa2IZVb（访问码：so3u）</p>
+<p>修改HShield中的ehsvc.ini文件的配置安装路径：<br>
+<img src="https://imgcdn.009898.xyz/img/20220311203134.png" alt="" loading="lazy"><br>
+<img src="https://imgcdn.009898.xyz/img/20220311203203.png" alt="" loading="lazy"></p>
+<p>win10 exe 选择以兼容 win7 运行，管理运行</p>
+<p>编辑 bat 文件 ip 9595</p>
+<p>运行bat</p>
+<p>admin admin</p>
+<p>GM 助手<br>
+https://cloud.189.cn/web/share?code=n2UvyerU3uM3（访问码：tai4）<br>
+填写数据库连接信息</p>
+<h2 id="使用说明">使用说明：</h2>
+<ol>
+<li>服务端开启后的GUI控制台有一些GM命令可以操作，我用的比较多的就是给物品，发金币。非常简单，自己试试就会。另外给物品需要知道物品id，推荐一个网站可以查询所有的地图ID，物品ID等等：http://mxdweb.com</li>
+</ol>
+<p>2.自己新增账号，角色。由于没有新增账号和角色的路径，自己新增账号和角色需要手动到相关的表里面去添加。服务端启动后，可以使用navicat(服务端文件夹下有此工具)访问本地mysql，账号：root 密码：root ；进入后选择mser库：</p>
+<p>新增账号，角色需要涉及到的表有：</p>
+<p>accounts、characters、inventoryslot、mountdata</p>
+<p>accounts(账号表):直接复制原有数据，name是账号，password是加密后的密码(感觉是md5，如果需要修改密码又不知道怎么加密，可以使用GUI管理器的修改密码功能)</p>
+<p>characters(角色表)：直接复制原有数据，accountid关联账号表id，下面是各种属性值，可以直接修改，因为是smallint，所以各属性最大32767。map字段是最后下线时的地图id，想要瞬移的，可以先下线，修改此字段，然后再登录，就会瞬移到指定地图了(查地图ID，还是可以去http://mxdweb.com)。gm字段表示是否是gm，0是普通角色，100是gm(gm会对所以角色和怪隐身，所以如果进去游戏发现怪不动，看看这个字段的值是不是0)。</p>
+<p>inventoryslot、mountdata这两张表还没怎么用过，不太知道具体用处。当手动添加角色时，发现差这两张表的数据，所以直接复制数据，修改关联。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%AE%9D%E5%A1%94">安装宝塔</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93">配置数据库</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF">运行服务端</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C%E5%AE%A2%E6%88%B7%E7%AB%AF">运行客户端</a>
+<ul>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF1%E6%88%91%E7%9A%84-win10-%E5%8F%AA%E8%83%BD%E7%94%A8%E8%BF%99%E4%B8%AA">客户端1（我的 Win10 只能用这个）</a></li>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF2win10-%E6%9C%89%E5%8F%AF%E8%83%BD%E6%9C%89%E9%97%AE%E9%A2%98%E6%88%91%E6%98%AF%E6%B2%A1%E6%9C%89%E8%BF%90%E8%A1%8C%E6%88%90%E5%8A%9F">客户端2（Win10 有可能有问题，我是没有运行成功）</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明：</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://009898.xyz/post/cloudflare-workers/">
+              <h3 class="post-title">
+                Cloudflare workers
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div class="classwaline" id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline.init({
+			  el: '#waline',
+			  serverURL: 'https://vercelwaline.009898.xyz',
+			  login: 'disable',
+			  copyright: false,
+			  imageUploader: false,
+			  emoji: [
+			    'https://nl.mark.nom.za/weibo',
+			  ],
+			});
+		</script>
+		
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://009898.xyz/atom.xml" target="_blank">
+<!-- 
+    <i class="ri-rss-line"></i>
+-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 12px;margin-bottom: 2px;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z"></path></svg> RSS
+  </a>
+</div>
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initCopyButtonOnLoad();
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
+
+  </body>
+</html>

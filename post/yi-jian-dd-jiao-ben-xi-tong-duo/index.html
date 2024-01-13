@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//mongobdwaline.vercel.app" />
+<link rel="dns-prefetch" href="//imgcdn.009898.xyz" />
+<link rel="dns-prefetch" href="//libravatar-proxy.009898.xyz" />
+<link rel="dns-prefetch" href="//cdn.staticfile.org" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>一键 DD 脚本，系统多 | Mark</title>
+<link rel="shortcut icon" href="https://009898.xyz/favicon.ico">
+<!-- <link href="https://gcore.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://009898.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="一键 DD 脚本，系统多 | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<!-- <link rel="stylesheet" href="https://009898.xyz/fontfamily.css?family=Droid+Serif:400,700"> -->
+<script src="https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.js"></script>
+<link href='https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.css' rel='stylesheet' />
+
+<style>
+.wl-emoji-popup button{
+    width: 32px;
+    margin: 5px;
+    height: 32px;
+}
+.wl-emoji-popup .wl-emoji {
+    max-width: 24px;
+    max-height: 24px;
+}
+</style>
+
+
+
+    <meta name="description" content="
+安装重装系统的前提组件:
+Debian/Ubuntu:
+apt-get install -y xz-utils openssl gawk file wget screen &amp;&amp; screen -S os
+
+RedHat/C..." />
+    <meta name="keywords" content="DD" />
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+	<!--代码复制-->
+	<script src="https://009898.xyz/highlightjs-copy-button.js"></script>
+	<script src="https://009898.xyz/highlightjs-copy-button.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://009898.xyz">
+  <img class="avatar" src="https://uniim1.shutterfly.com/render/00-qqXkq-YSXVDCUiEmPy1uRoVvZUPg3CUdaHSFKnp8vIi_641SthKh8AaW_nOVTCmiV7ntXQOewWgszVPDOQPWWw?cn=THISLIFE&res=large&ts=1639985127" alt="">
+  </a>
+  <h1 class="site-title">
+    Mark
+  </h1>
+  <p class="site-description">
+    We can't help ourselves. Just gotta hold on. The sun will shine through.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              一键 DD 脚本，系统多
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-02-02
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://009898.xyz/tag/9_27H3_FO/" class="post-tag">
+                  # DD
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://img.009898.xyz/i/2023/zckjdj-0.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <!-- more -->
+<p>安装重装系统的前提组件:</p>
+<pre><code>Debian/Ubuntu:
+apt-get install -y xz-utils openssl gawk file wget screen &amp;&amp; screen -S os
+
+RedHat/CentOS:
+yum install -y xz openssl gawk file glibc-common wget screen &amp;&amp; screen -S os
+</code></pre>
+<p>如果出现异常，请刷新 Mirrors 缓存或更换镜像源。</p>
+<pre><code>RedHat/CentOS:
+yum makecache &amp;&amp; yum update -y
+
+Debian/Ubuntu:
+apt update -y 
+</code></pre>
+<p>使用:</p>
+<pre><code>wget --no-check-certificate -O AutoReinstall.sh https://raw.githubusercontent.com/fcurrk/reinstall/master/AutoReinstall.sh &amp;&amp; chmod a+x AutoReinstall.sh &amp;&amp; bash AutoReinstall.sh
+</code></pre>
+<p>新版体验：</p>
+<pre><code>wget --no-check-certificate -O NewReinstall.sh https://raw.githubusercontent.com/fcurrk/reinstall/master/NewReinstall.sh &amp;&amp; chmod a+x NewReinstall.sh &amp;&amp; bash NewReinstall.sh
+</code></pre>
+<p>DD 安装界面<br>
+输入Y确认DD后主机自动获取IP，N 则自行设置 IP 输入 N 后会自动检测出主机现用 IP，如果正确可以按 Y 确认使用，如不正确则按 N 自行按正确的输入。</p>
+<p>DD 安装界面-选择系统<br>
+25 合 1 的系统一键 DD 选择界面，输入 99 则使用自定义镜像。 以上系统密码不为默认密码的均为网络收集，如有疑虑使用自己的自定义镜像。</p>
+<p>25合一系统密码：<br>
+1、CentOS 7.7 (已关闭防火墙及SELinux，默认密码Pwd@CentOS)<br>
+2、CentOS 7 (默认密码cxthhhhh.com)<br>
+3、CentOS 8 (默认密码cxthhhhh.com)<br>
+4、CentOS 6 (默认密码Minijer.com)<br>
+5、Debian 11 (默认密码Minijer.com)<br>
+6、Debian 10 (默认密码Minijer.com)<br>
+7、Debian 9 (默认密码Minijer.com)<br>
+8、Debian 8 (默认密码Minijer.com)<br>
+9、Ubuntu 20.04 (默认密码Minijer.com)<br>
+10、Ubuntu 18.04 (默认密码Minijer.com)<br>
+11、Ubuntu 16.04 (默认密码Minijer.com)<br>
+12、Windows Server 2019 (默认密码cxthhhhh.com)<br>
+13、Windows Server 2016 (默认密码cxthhhhh.com)<br>
+14、Windows Server 2012 (默认密码cxthhhhh.com)<br>
+15、Windows Server 2012 Lite (默认密码nat.ee)<br>
+16、Windows Server 2008 (默认密码cxthhhhh.com)<br>
+17、Windows Server 2008 Lite (默认密码nat.ee)<br>
+18、Windows Server 2003 (默认密码cxthhhhh.com)<br>
+19、Windows Server 2003 Lite (默认密码WinSrv2003x86-Chinese)<br>
+20、Windows 10 LTSC Lite (默认密码www.nat.ee)<br>
+21、Windows 7 x86 Lite (默认密码Windows7x86-Chinese)<br>
+22、Windows 7 Ent Lite (默认密码nat.ee)<br>
+23、Windows 7 Ent Lite (UEFI支持甲骨文)(默认密码nat.ee)<br>
+24、Windows Server 2008 Lite (UEFI支持甲骨文)(默认密码nat.ee)<br>
+25、Windows Server 2012 Lite (UEFI支持甲骨文)(默认密码nat.ee)<br>
+99、自定义镜像</p>
+<p>注意：<br>
+经测试在谷歌云原版系统基础上 DD 会出现自动获取的子网掩码为 255.255.255.255,如出现这种情况需要手工输入改正为正确的如 255.255.255.0,否则会安装完成主机可能会离线。<br>
+Oracle Cloud（甲骨文云）可选择23-25一键 DD,注意<strong>基础系统最好选择 Ubuntu，如原系统是CentOS可能无法成功。</strong><br>
+<strong>实测，基础系统不要 Centos ！！！</strong><br>
+默认密码登录，尽快输入以下命令修改 root 密码：<code>passwd root</code><br>
+<strong>进度条不会显示百分比进度，没有卡死耐心等待！！（特别是分区界面一直0%，取决小鸡硬盘速度，有的会很慢！）</strong></p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://009898.xyz/post/docker-an-zhuang-php-74/">
+              <h3 class="post-title">
+                Docker 安装 PHP 7.4
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div class="classwaline" id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline.init({
+			  el: '#waline',
+			  serverURL: 'https://vercelwaline.009898.xyz',
+			  login: 'disable',
+			  copyright: false,
+			  imageUploader: false,
+			  emoji: [
+			    'https://nl.mark.nom.za/weibo',
+			  ],
+			});
+		</script>
+		
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://009898.xyz/atom.xml" target="_blank">
+<!-- 
+    <i class="ri-rss-line"></i>
+-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 12px;margin-bottom: 2px;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z"></path></svg> RSS
+  </a>
+</div>
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initCopyButtonOnLoad();
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
+
+  </body>
+</html>

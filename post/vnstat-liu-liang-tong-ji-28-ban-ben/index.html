@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//mongobdwaline.vercel.app" />
+<link rel="dns-prefetch" href="//imgcdn.009898.xyz" />
+<link rel="dns-prefetch" href="//libravatar-proxy.009898.xyz" />
+<link rel="dns-prefetch" href="//cdn.staticfile.org" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>vnstat 流量统计（2.8版本）安装教程 | Mark</title>
+<link rel="shortcut icon" href="https://009898.xyz/favicon.ico">
+<!-- <link href="https://gcore.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://009898.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="vnstat 流量统计（2.8版本）安装教程 | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<!-- <link rel="stylesheet" href="https://009898.xyz/fontfamily.css?family=Droid+Serif:400,700"> -->
+<script src="https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.js"></script>
+<link href='https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.css' rel='stylesheet' />
+
+<style>
+.wl-emoji-popup button{
+    width: 32px;
+    margin: 5px;
+    height: 32px;
+}
+.wl-emoji-popup .wl-emoji {
+    max-width: 24px;
+    max-height: 24px;
+}
+</style>
+
+
+
+    <meta name="description" content="
+转载：
+https://blog.51cto.com/heyong/5148951
+https://www.tecmint.com/install-vnstat-and-vnstati-to-monitor-linux-network-t..." />
+    <meta name="keywords" content="vnstat" />
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+	<!--代码复制-->
+	<script src="https://009898.xyz/highlightjs-copy-button.js"></script>
+	<script src="https://009898.xyz/highlightjs-copy-button.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://009898.xyz">
+  <img class="avatar" src="https://uniim1.shutterfly.com/render/00-qqXkq-YSXVDCUiEmPy1uRoVvZUPg3CUdaHSFKnp8vIi_641SthKh8AaW_nOVTCmiV7ntXQOewWgszVPDOQPWWw?cn=THISLIFE&res=large&ts=1639985127" alt="">
+  </a>
+  <h1 class="site-title">
+    Mark
+  </h1>
+  <p class="site-description">
+    We can't help ourselves. Just gotta hold on. The sun will shine through.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              vnstat 流量统计（2.8版本）安装教程
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-04-15
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://009898.xyz/tag/aV-bvsE-N/" class="post-tag">
+                  # vnstat
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://img.009898.xyz/i/2023/10nzn4d-0.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <blockquote>
+<p>转载：<br>
+https://blog.51cto.com/heyong/5148951<br>
+https://www.tecmint.com/install-vnstat-and-vnstati-to-monitor-linux-network-traffic/</p>
+</blockquote>
+<p>备份：<br>
+https://raw.githubusercontent.com/jys11111/jys/main/vnstat-2.6.tar.gz<br>
+https://raw.githubusercontent.com/jys11111/jys/main/vnstat-2.8.tar.gz</p>
+<h2 id="先决条件">先决条件</h2>
+<p>make<br>
+C compiler<br>
+user with access to kernel interface statistics<br>
+usually available by default but can be restricted for example by grsecurity and similar security enhancement suites or settings<br>
+sqlite3 (library and development files)<br>
+libgd (optional, image output)<br>
+check (optional, test suite)<br>
+pkg-config (optional, for check detection)<br>
+autotools (optional, for recreating configure and makefiles)</p>
+<h2 id="安装">安装</h2>
+<p>Centos:</p>
+<pre><code>yum -y install gcc automake autoconf libtool make
+yum install gd gd-devel sqlite sqlite-devel 
+#如果上面两个装了还不行，在运行这行
+#yum group install &quot;Development Tools&quot;
+
+wget https://github.com/vergoh/vnstat/releases/download/v2.8/vnstat-2.8.tar.gz
+
+tar zxf vnstat-2.8.tar.gz
+
+cd vnstat-2.8
+
+./configure --prefix=/usr --sysconfdir=/etc &amp;&amp; make &amp;&amp; make install
+
+mkdir /var/lib/vnstat
+
+chmod -R 777 /var/lib/vnstat/
+</code></pre>
+<p>配置system启动</p>
+<pre><code>cp -v examples/systemd/vnstat.service /etc/systemd/system/
+systemctl start vnstat
+systemctl enable vnstat
+systemctl restart vnstat
+</code></pre>
+<p>注意：如果是较旧的版本使用下面的命令</p>
+<pre><code>cp -v examples/systemd/simple/vnstat.service /etc/systemd/system/
+systemctl enable vnstat
+systemctl start vnstat
+</code></pre>
+<h2 id="其它系统">其它系统</h2>
+<p>Debian:</p>
+<pre><code>apt-get install libsqlite3-dev
+apt-get install sqlite3
+apt-get install make
+# 下面这条不是必须
+#apt-get install build-essential
+
+wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
+tar -xvf vnstat-2.6.tar.gz
+cd vnstat-2.6/
+./configure --prefix=/usr --sysconfdir=/etc &amp;&amp; make &amp;&amp; make install
+
+cp -v examples/systemd/vnstat.service /etc/systemd/system/
+systemctl start vnstat
+systemctl enable vnstat
+</code></pre>
+<p>Red Hat / CentOS:</p>
+<pre><code>cp -v examples/init.d/redhat/vnstat /etc/init.d/
+chkconfig vnstat on
+service vnstat start
+</code></pre>
+<p>upstart:</p>
+<pre><code>cp -v examples/upstart/vnstat.conf /etc/init/
+initctl start vnstat
+</code></pre>
+<h2 id="报错">报错</h2>
+<p>configure: error: could not find required sqlite3 library:</p>
+<pre><code>#Centos
+yum install -y sqlite-devel
+
+# Debian/Ubuntu
+apt-get install sqlite3
+apt-get install libsqlite3-dev
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6">先决条件</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E5%85%B6%E5%AE%83%E7%B3%BB%E7%BB%9F">其它系统</a></li>
+<li><a href="#%E6%8A%A5%E9%94%99">报错</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://009898.xyz/post/ssl-zheng-shu-jian-kong-php/">
+              <h3 class="post-title">
+                SSL 证书监控 php
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div class="classwaline" id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline.init({
+			  el: '#waline',
+			  serverURL: 'https://vercelwaline.009898.xyz',
+			  login: 'disable',
+			  copyright: false,
+			  imageUploader: false,
+			  emoji: [
+			    'https://nl.mark.nom.za/weibo',
+			  ],
+			});
+		</script>
+		
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://009898.xyz/atom.xml" target="_blank">
+<!-- 
+    <i class="ri-rss-line"></i>
+-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 12px;margin-bottom: 2px;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z"></path></svg> RSS
+  </a>
+</div>
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initCopyButtonOnLoad();
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
+
+  </body>
+</html>

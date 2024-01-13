@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//mongobdwaline.vercel.app" />
+<link rel="dns-prefetch" href="//imgcdn.009898.xyz" />
+<link rel="dns-prefetch" href="//libravatar-proxy.009898.xyz" />
+<link rel="dns-prefetch" href="//cdn.staticfile.org" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何在Windows下访问ext4格式的硬盘？ | Mark</title>
+<link rel="shortcut icon" href="https://009898.xyz/favicon.ico">
+<!-- <link href="https://gcore.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://009898.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="如何在Windows下访问ext4格式的硬盘？ | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<!-- <link rel="stylesheet" href="https://009898.xyz/fontfamily.css?family=Droid+Serif:400,700"> -->
+<script src="https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.js"></script>
+<link href='https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.css' rel='stylesheet' />
+
+<style>
+.wl-emoji-popup button{
+    width: 32px;
+    margin: 5px;
+    height: 32px;
+}
+.wl-emoji-popup .wl-emoji {
+    max-width: 24px;
+    max-height: 24px;
+}
+</style>
+
+
+
+    <meta name="description" content="我花了 3 小时，亲自去实验了问答里的所有的方案，把能解决这个问题的方法，都给大家总结好了，不同同学可能情况不同，多尝试几个方案，应该就能解决。
+方案一：ext2explore 软件
+这是 windows 下的一个软件，你下载完毕之后，需要..." />
+    <meta name="keywords" content="ext4,linux" />
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+	<!--代码复制-->
+	<script src="https://009898.xyz/highlightjs-copy-button.js"></script>
+	<script src="https://009898.xyz/highlightjs-copy-button.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://009898.xyz">
+  <img class="avatar" src="https://uniim1.shutterfly.com/render/00-qqXkq-YSXVDCUiEmPy1uRoVvZUPg3CUdaHSFKnp8vIi_641SthKh8AaW_nOVTCmiV7ntXQOewWgszVPDOQPWWw?cn=THISLIFE&res=large&ts=1639985127" alt="">
+  </a>
+  <h1 class="site-title">
+    Mark
+  </h1>
+  <p class="site-description">
+    We can't help ourselves. Just gotta hold on. The sun will shine through.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              如何在Windows下访问ext4格式的硬盘？
+            </h2>
+            <div class="post-info">
+              <span>
+                2023-11-25
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://009898.xyz/tag/6ToL1drKk/" class="post-tag">
+                  # ext4
+                </a>
+              
+                <a href="https://009898.xyz/tag/FnF5ugOTRa/" class="post-tag">
+                  # linux
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://img.009898.xyz/i/2023/11/25/njiyzi.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>我花了 3 小时，亲自去实验了问答里的所有的方案，把能解决这个问题的方法，都给大家总结好了，不同同学可能情况不同，多尝试几个方案，应该就能解决。</p>
+<h2 id="方案一ext2explore-软件">方案一：ext2explore 软件</h2>
+<p>这是 windows 下的一个软件，你下载完毕之后，需要右键管理员权限使用，就能打开 ext4 格式硬盘的</p>
+<p>下载地址：http://sourceforge.net/project</p>
+<figure data-type="image" tabindex="1"><img src="https://img.009898.xyz/i/2023/11/25/nkg543-0.png" alt="EasyImages-normal" loading="lazy"></figure>
+<p>但这个软件在 Windows 10 安装最新版可能会遇到，不仅把ext4识别成ext3，挂载之后还无法访问，说已损坏，让我格式化的问题。</p>
+<p>如果遇到这种问答，推荐大家下载 0.68 的版本，应该是能使用的。</p>
+<p>0.68 的下载地址：Ext2 File System Driver for Windows</p>
+<h2 id="方案二paragon-extfs">方案二：Paragon ExtFS</h2>
+<p>这个软件也可以直接在文件资源管理器里访问 Ext4 硬盘，虽然是付费软件，但刚开始的 10 天是可以免费使用，之后就限速 5MB/s。</p>
+<p>下载地址：<a href="https://china.paragon-software.com/home-windows/extfs-for-windows/download.html">ExtFS for Windows®</a></p>
+<figure data-type="image" tabindex="2"><img src="https://img.009898.xyz/i/2023/11/25/nl91um-0.png" alt="EasyImages-normal" loading="lazy"></figure>
+<h2 id="方案三diskinternals-linux-reader">方案三：DiskInternals Linux Reader</h2>
+<p>如果上面两个方案还是无法解决，那你就下载这个，下面是软件的官方地址，大家只要下载免费版的就能读取 ext4 了。</p>
+<p>https://www.diskinternals.com/linux-reader/</p>
+<figure data-type="image" tabindex="3"><img src="https://img.009898.xyz/i/2023/11/25/nm81ld-0.png" alt="EasyImages-normal" loading="lazy"></figure>
+<p>转自：https://www.zhihu.com/tardis/bd/art/448535639</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%96%B9%E6%A1%88%E4%B8%80ext2explore-%E8%BD%AF%E4%BB%B6">方案一：ext2explore 软件</a></li>
+<li><a href="#%E6%96%B9%E6%A1%88%E4%BA%8Cparagon-extfs">方案二：Paragon ExtFS</a></li>
+<li><a href="#%E6%96%B9%E6%A1%88%E4%B8%89diskinternals-linux-reader">方案三：DiskInternals Linux Reader</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://009898.xyz/post/yu-lu/">
+              <h3 class="post-title">
+                语录
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div class="classwaline" id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline.init({
+			  el: '#waline',
+			  serverURL: 'https://vercelwaline.009898.xyz',
+			  login: 'disable',
+			  copyright: false,
+			  imageUploader: false,
+			  emoji: [
+			    'https://nl.mark.nom.za/weibo',
+			  ],
+			});
+		</script>
+		
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://009898.xyz/atom.xml" target="_blank">
+<!-- 
+    <i class="ri-rss-line"></i>
+-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 12px;margin-bottom: 2px;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z"></path></svg> RSS
+  </a>
+</div>
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initCopyButtonOnLoad();
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
+
+  </body>
+</html>

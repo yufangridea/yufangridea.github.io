@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//mongobdwaline.vercel.app" />
+<link rel="dns-prefetch" href="//imgcdn.009898.xyz" />
+<link rel="dns-prefetch" href="//libravatar-proxy.009898.xyz" />
+<link rel="dns-prefetch" href="//cdn.staticfile.org" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SSL 证书监控 php | Mark</title>
+<link rel="shortcut icon" href="https://009898.xyz/favicon.ico">
+<!-- <link href="https://gcore.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://009898.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="SSL 证书监控 php | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<!-- <link rel="stylesheet" href="https://009898.xyz/fontfamily.css?family=Droid+Serif:400,700"> -->
+<script src="https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.js"></script>
+<link href='https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.css' rel='stylesheet' />
+
+<style>
+.wl-emoji-popup button{
+    width: 32px;
+    margin: 5px;
+    height: 32px;
+}
+.wl-emoji-popup .wl-emoji {
+    max-width: 24px;
+    max-height: 24px;
+}
+</style>
+
+
+
+    <meta name="description" content="最近网站有点多了，为了方便看所有站点的 SSL 证书，想搞个监控，目前就写到检测是否有效（很垃圾，就这样吧）
+我的环境 php70，其他版本未测，应该都可以用
+我的 SSL 监控站：https://ssl.009898.xyz/
+创建一个 ..." />
+    <meta name="keywords" content="" />
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+	<!--代码复制-->
+	<script src="https://009898.xyz/highlightjs-copy-button.js"></script>
+	<script src="https://009898.xyz/highlightjs-copy-button.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://009898.xyz">
+  <img class="avatar" src="https://uniim1.shutterfly.com/render/00-qqXkq-YSXVDCUiEmPy1uRoVvZUPg3CUdaHSFKnp8vIi_641SthKh8AaW_nOVTCmiV7ntXQOewWgszVPDOQPWWw?cn=THISLIFE&res=large&ts=1639985127" alt="">
+  </a>
+  <h1 class="site-title">
+    Mark
+  </h1>
+  <p class="site-description">
+    We can't help ourselves. Just gotta hold on. The sun will shine through.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              SSL 证书监控 php
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-04-10
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://img.009898.xyz/i/2023/10nklra-0.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>最近网站有点多了，为了方便看所有站点的 SSL 证书，想搞个监控，目前就写到检测是否有效（很垃圾，就这样吧）</p>
+<p>我的环境 php70，其他版本未测，应该都可以用</p>
+<p>我的 SSL 监控站：<a href="https://ssl.009898.xyz/">https://ssl.009898.xyz/</a></p>
+<p>创建一个 php，复制下面内容，修改 siteArray 里面的网站</p>
+<pre><code>&lt;html&gt;
+	&lt;head&gt;
+		&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.staticfile.org/layui/2.6.8/css/layui.min.css&quot;&gt;
+		&lt;style&gt;
+		i.layui-icon.layui-icon-close {
+		    border-radius: 2px;
+		    background-color: #FF5722;
+		    color: #fff;
+			padding: 3px;
+			font-size: 14px;
+		}
+		i.layui-icon.layui-icon-ok {
+		    border-radius: 2px;
+		    background-color: #2ec770;
+		    color: #fff;
+			padding: 3px;
+			font-size: 14px;
+		}
+		.layui-table tr th {
+		    font-weight: 600;
+		}
+		.layui-table {
+			color: #333;
+		}
+		.layui-table th, .layui-table td{
+			font-size:15px;
+		}
+		&lt;/style&gt;
+	&lt;/head&gt;
+&lt;body style=&quot;margin: 0 50px;&quot;&gt;
+	&lt;fieldset class=&quot;layui-elem-field layui-field-title&quot; style=&quot;margin-top: 20px;&quot;&gt;
+		&lt;legend&gt;SSL 证书监控&lt;/legend&gt;
+	&lt;/fieldset&gt;
+&lt;div class=&quot;layui-form&quot;&gt;
+  &lt;table class=&quot;layui-table&quot;&gt;
+    &lt;colgroup&gt;
+      &lt;col width=&quot;250&quot;&gt;
+      &lt;col width=&quot;120&quot;&gt;
+      &lt;col width=&quot;230&quot;&gt;
+    &lt;/colgroup&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;网站&lt;/th&gt;
+        &lt;th&gt;是否有效&lt;/th&gt;
+        &lt;th&gt;到期时间&lt;/th&gt;
+        &lt;th&gt;剩余时间&lt;/th&gt;
+      &lt;/tr&gt; 
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+&lt;?php
+$g = stream_context_create ([
+    &quot;ssl&quot; =&gt; [&quot;capture_peer_cert&quot; =&gt; true],
+    'http' =&gt; [
+		'method' =&gt; 'GET',
+		'user_agent' =&gt; 'Chrome 42.0.2311.135',
+		'timeout'=&gt;500
+    ]
+]);
+date_default_timezone_set('PRC');
+$siteArray=array(&quot;https://009898.xyz&quot;,&quot;https://status.009898.xyz&quot;,&quot;https://cloud.009898.xyz&quot;,&quot;https://pic.009898.xyz&quot;,&quot;https://github.009898.xyz&quot;,&quot;https://jp.009898.xyz&quot;,&quot;https://sj.009898.xyz&quot;,&quot;https://nl.009898.xyz&quot;,&quot;https://hostcli.009898.xyz&quot;,&quot;https://imgcdn.009898.xyz&quot;);
+foreach ($siteArray as $value){
+	//$r = fopen($value, &quot;rb&quot;, false, $g);
+	$orignal_parse = parse_url($value, PHP_URL_HOST);
+	$r = stream_socket_client(&quot;ssl://&quot;.$orignal_parse.&quot;:443&quot;, $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $g);
+	$cont = stream_context_get_params($r);
+	$cert = openssl_x509_parse($cont[&quot;options&quot;][&quot;ssl&quot;][&quot;peer_certificate&quot;]);
+	$expireDate = date(&quot;Y-m-d H:i:s&quot;, $cert['validTo_time_t']);
+	$date1 = date_create(date('Y-m-d H:i:s')); 
+	$date2 = date_create($expireDate); 
+	$diff = date_diff($date1, $date2)-&gt;format('%R%a 天');
+	if(empty($cert['validTo_time_t'])) {
+		echo &quot;&lt;tr&gt;&lt;td&gt;&quot;, str_replace(&quot;https://&quot;,&quot;&quot;,$value,$i), &quot;&lt;/td&gt;&lt;td&gt;&lt;i class=\&quot;layui-icon layui-icon-close\&quot;&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&quot;, &quot;已过期&quot;, &quot;&lt;/td&gt;&lt;td&gt;&quot;, $diff ,&quot;&lt;/td&gt;&lt;/tr&gt;&quot;;
+	} else {
+		echo &quot;&lt;tr&gt;&lt;td&gt;&quot;, str_replace(&quot;https://&quot;,&quot;&quot;,$value,$i), &quot;&lt;/td&gt;&lt;td&gt;&lt;i class=\&quot;layui-icon layui-icon-ok\&quot;&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&quot;, $expireDate , &quot;&lt;/td&gt;&lt;td&gt;&quot;, $diff ,&quot;&lt;/td&gt;&lt;/tr&gt;&quot;;
+	}
+}
+?&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;site-footer&quot; style=&quot;text-align:center;padding:40px 0;color:#868e96;display:flex;justify-content:center;align-items:center;position:fixed;bottom:0;width:100%;&quot;&gt;
+  Powered by&lt;a href=&quot;https://009898.xyz/post/ssl-zheng-shu-jian-kong-php/&quot; target=&quot;_blank&quot;&gt;&amp;nbsp;Mark&lt;/a&gt;  
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<blockquote>
+<p>参考文章：https://cloud.tencent.com/developer/article/1116498</p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://009898.xyz/post/zai-debian-10-shang-an-zhuang-gnome-zhuo-mian-tu-xing-hua-jie-mian/">
+              <h3 class="post-title">
+                在Debian 10上安装GNOME桌面（图形化界面）
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div class="classwaline" id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline.init({
+			  el: '#waline',
+			  serverURL: 'https://vercelwaline.009898.xyz',
+			  login: 'disable',
+			  copyright: false,
+			  imageUploader: false,
+			  emoji: [
+			    'https://nl.mark.nom.za/weibo',
+			  ],
+			});
+		</script>
+		
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://009898.xyz/atom.xml" target="_blank">
+<!-- 
+    <i class="ri-rss-line"></i>
+-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 12px;margin-bottom: 2px;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z"></path></svg> RSS
+  </a>
+</div>
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initCopyButtonOnLoad();
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
+
+  </body>
+</html>

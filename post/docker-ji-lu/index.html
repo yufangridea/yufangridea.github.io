@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//mongobdwaline.vercel.app" />
+<link rel="dns-prefetch" href="//imgcdn.009898.xyz" />
+<link rel="dns-prefetch" href="//libravatar-proxy.009898.xyz" />
+<link rel="dns-prefetch" href="//cdn.staticfile.org" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Docker 记录 | Mark</title>
+<link rel="shortcut icon" href="https://009898.xyz/favicon.ico">
+<!-- <link href="https://gcore.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://009898.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Docker 记录 | Mark - Atom Feed" href="https://009898.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<!-- <link rel="stylesheet" href="https://009898.xyz/fontfamily.css?family=Droid+Serif:400,700"> -->
+<script src="https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.js"></script>
+<link href='https://gcore.jsdelivr.net/gh/jys11111/jys/waline2.5.1/waline.css' rel='stylesheet' />
+
+<style>
+.wl-emoji-popup button{
+    width: 32px;
+    margin: 5px;
+    height: 32px;
+}
+.wl-emoji-popup .wl-emoji {
+    max-width: 24px;
+    max-height: 24px;
+}
+</style>
+
+
+
+    <meta name="description" content="🤓记录下常用的 Docker 命令，大多内容来自 这里。
+🔧这次是折腾博客的 Waline 评论系统，想自己独立部署，发现好久不用 Docker 给忘了一些命令。
+
+🌚最后部署上了，不过还是弃用了。vps 在纽约的水牛城，速度实在太拉..." />
+    <meta name="keywords" content="Docker,Waline" />
+    <!--
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+	<!--代码复制-->
+	<script src="https://009898.xyz/highlightjs-copy-button.js"></script>
+	<script src="https://009898.xyz/highlightjs-copy-button.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://009898.xyz">
+  <img class="avatar" src="https://uniim1.shutterfly.com/render/00-qqXkq-YSXVDCUiEmPy1uRoVvZUPg3CUdaHSFKnp8vIi_641SthKh8AaW_nOVTCmiV7ntXQOewWgszVPDOQPWWw?cn=THISLIFE&res=large&ts=1639985127" alt="">
+  </a>
+  <h1 class="site-title">
+    Mark
+  </h1>
+  <p class="site-description">
+    We can't help ourselves. Just gotta hold on. The sun will shine through.
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Docker 记录
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-12-12
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="https://009898.xyz/tag/1XIsoAJlo/" class="post-tag">
+                  # Docker
+                </a>
+              
+                <a href="https://009898.xyz/tag/ZnxMxQkc7C/" class="post-tag">
+                  # Waline
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://img.009898.xyz/i/2023/z8tclh-0.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>🤓记录下常用的 Docker 命令，大多内容来自 <a href="https://www.runoob.com/docker/docker-tutorial.html">这里</a>。</p>
+<p>🔧这次是折腾博客的 Waline 评论系统，想自己独立部署，发现好久不用 Docker 给忘了一些命令。</p>
+<!-- more -->
+<p>🌚最后部署上了，不过还是弃用了。vps 在纽约的水牛城，速度实在太拉了。</p>
+<p>😅部署 Waline 评论系统还是推荐直接官网的 <a href="https://waline.js.org/guide/get-started.html#vercel-%E9%83%A8%E7%BD%B2-%E6%9C%8D%E5%8A%A1%E7%AB%AF">Vercel 部署</a>，数据库就用 <a href="https://www.elephantsql.com/">ElephantSQL</a> 提供的免费 20M 的 PostgreSQL 就行。</p>
+<p>🤕独立部署 Waline 内容要参考的话，可以安装完 Docker 和 Docker compose 后，直接目录树跳到 <a href="https://009898.xyz/post/docker-ji-lu/#docker-compose">Docker compose 部分</a>。</p>
+<p><strong>文章目录：</strong><br>
+<ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85-docker">一键安装 Docker：</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85-docker-compose">安装 Docker compose</a></li>
+<li><a href="#%E5%AE%B9%E5%99%A8">容器</a>
+<ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F">获取镜像：</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%9A%84%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E5%A6%82%E4%B8%8B">查看所有的容器命令如下：</a></li>
+<li><a href="#%E5%81%9C%E6%AD%A2%E5%92%8C%E9%87%8D%E5%90%AF%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8">停止和重启一个容器:</a></li>
+<li><a href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8">进入容器:</a></li>
+<li><a href="#%E5%AF%BC%E5%87%BA%E5%AE%B9%E5%99%A8">导出容器：</a></li>
+<li><a href="#%E5%AF%BC%E5%85%A5%E5%AE%B9%E5%99%A8%E5%BF%AB%E7%85%A7">导入容器快照：</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8">删除容器：</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BE%8B%E5%AD%90%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA-web-%E5%BA%94%E7%94%A8">例子：运行一个 web 应用</a></li>
+<li><a href="#%E9%95%9C%E5%83%8F">镜像</a>
+<ul>
+<li><a href="#%E5%88%97%E5%87%BA%E9%95%9C%E5%83%8F%E5%88%97%E8%A1%A8">列出镜像列表：</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F">删除镜像：</a></li>
+</ul>
+</li>
+<li><a href="#docker-compose">Docker compose</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4">其他命令</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="一键安装-docker">一键安装 Docker：</h2>
+<p>推荐使用 get.daocloud.io 来安装</p>
+<p>官方：</p>
+<pre><code>curl -sSL https://get.docker.com/ | sh
+</code></pre>
+<p>国内：</p>
+<pre><code>curl -sSL https://get.daocloud.io/docker | sh
+</code></pre>
+<h2 id="安装-docker-compose">安装 Docker compose</h2>
+<p>国外：</p>
+<pre><code>curl -L &quot;https://github.com/docker/compose/releases/download/2.2.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>国内：</p>
+<pre><code>curl -L https://get.daocloud.io/docker/compose/releases/download/v2.2.2/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h2 id="容器">容器</h2>
+<p>在 <a href="https://hub.docker.com/">hub.docker.com</a> 搜索需要的镜像，右边找到 <code>Docker Pull Command</code></p>
+<h3 id="获取镜像">获取镜像：</h3>
+<pre><code>docker pull xxx
+</code></pre>
+<p>启动容器：</p>
+<p>在大部分的场景下，我们希望 docker 的服务是在后台运行的，我们可以过 -d 指定容器的运行模式。</p>
+<h3 id="查看所有的容器命令如下">查看所有的容器命令如下：</h3>
+<pre><code>docker ps -a
+</code></pre>
+<p><img src="https://imgcdn.009898.xyz/img/20211212152824.png" alt="" loading="lazy"><br>
+可以看到 container id, image, status, ports</p>
+<h3 id="停止和重启一个容器">停止和重启一个容器:</h3>
+<pre><code>docker stop &lt;container id&gt;
+docker restart &lt;container id&gt;
+</code></pre>
+<h3 id="进入容器">进入容器:</h3>
+<p>在使用 -d 参数时，容器启动后会进入后台。此时想要进入容器，可以通过以下指令进入：</p>
+<pre><code>docker attach &lt;container id&gt;
+docker exec &lt;container id&gt;
+</code></pre>
+<p>推荐大家使用 docker exec 命令，因为此方法，exit退出容器终端，不会导致容器的停止。</p>
+<h3 id="导出容器">导出容器：</h3>
+<p>如果要导出本地某个容器，可以使用 docker export 命令。</p>
+<pre><code>docker export 7b916fb13267 &gt; /root/xxxx.tar
+</code></pre>
+<p>7b916fb13267 为 container id</p>
+<h3 id="导入容器快照">导入容器快照：</h3>
+<p>可以使用 docker import 从容器快照文件中再导入为镜像，以下实例将快照文件 xxxx.tar 导入到镜像 example/imagerepo</p>
+<pre><code>cat /root/xxxx.tar | docker import - example/imagerepo
+</code></pre>
+<p>此外，也可以通过指定 URL 或者某个目录来导入，例如：</p>
+<pre><code>docker import http://example.com/exampleimage.tgz example/imagerepo
+</code></pre>
+<h3 id="删除容器">删除容器：</h3>
+<p>删除容器使用 docker rm 命令：</p>
+<pre><code>docker rm -f 7b916fb13267
+</code></pre>
+<h2 id="例子运行一个-web-应用">例子：运行一个 web 应用</h2>
+<p>前面我们运行的容器并没有一些什么特别的用处。<br>
+接下来让我们尝试使用 docker 构建一个 web 应用程序。</p>
+<p>我们将在 docker 容器中运行一个 Python Flask 应用，来运行一个 web 应用。</p>
+<pre><code>docker pull training/webapp
+docker run -d -P training/webapp python app.py
+</code></pre>
+<p>参数说明:<br>
+-d:让容器在后台运行。<br>
+-P:将容器内部使用的网络端口随机映射到我们使用的主机上。</p>
+<p>使用 docker ps 来查看我们正在运行的容器。<br>
+注意 ports 信息：</p>
+<pre><code>PORTS
+0.0.0.0:32769-&gt;5000/tcp
+</code></pre>
+<p>Docker 开放了 5000 端口（默认 Python Flask 端口）映射到主机端口 32769 上。</p>
+<p>这时我们可以通过浏览器访问WEB应用：<br>
+<img src="https://imgcdn.009898.xyz/img/20211212154134.png" alt="" loading="lazy"></p>
+<p>我们也可以通过 -p 参数来设置不一样的端口：</p>
+<pre><code>docker run -d -p 5000:5000 training/webapp python app.py
+</code></pre>
+<p>docker 还提供了另一个快捷方式 docker port，使用 docker port 可以查看<strong>指定 （ID 或者名字）容器</strong>的某个确定端口映射到宿主机的端口号。</p>
+<pre><code>docker port 7b916fb13267
+</code></pre>
+<p>接下来 docker stop 和 docker rm 停止和删除容器。</p>
+<h2 id="镜像">镜像</h2>
+<p>当运行容器时，使用的镜像如果在本地中不存在，docker 就会自动从 docker 镜像仓库中下载，默认是从 <a href="https://hub.docker.com/">hub.docker.com</a> 公共镜像源下载。</p>
+<p>下面我们来学习：<br>
+1、管理和使用本地 Docker 主机镜像<br>
+2、创建镜像</p>
+<h3 id="列出镜像列表">列出镜像列表：</h3>
+<p>使用 <code>docker images</code> 来列出本地主机上的镜像。</p>
+<p>各个选项说明:</p>
+<ul>
+<li>REPOSITORY：表示镜像的仓库源</li>
+<li>TAG：镜像的标签</li>
+<li>IMAGE ID：镜像ID</li>
+<li>CREATED：镜像创建时间</li>
+<li>SIZE：镜像大小</li>
+</ul>
+<p>同一仓库源可以有多个 TAG，代表这个仓库源的不同个版本，如 ubuntu 仓库源里，有 15.10、14.04 等多个不同的版本，我们使用 <strong>REPOSITORY:TAG</strong> 来定义不同的镜像。<br>
+所以，我们如果要使用版本为15.10的ubuntu系统镜像来运行容器时，命令如下：</p>
+<pre><code>docker run -t -i ubuntu:15.10 /bin/bash 
+</code></pre>
+<p>在 <a href="https://hub.docker.com/">hub.docker.com</a> 搜索需要的镜像，右边找到 <code>Docker Pull Command</code></p>
+<pre><code>docker pull xxx
+</code></pre>
+<h3 id="删除镜像">删除镜像：</h3>
+<p>镜像删除使用 docker rmi 命令，比如我们删除 hello-world 镜像：</p>
+<pre><code>docker rmi hello-world
+</code></pre>
+<h2 id="docker-compose">Docker compose</h2>
+<p>以安装 waline 为例子：</p>
+<p>检查是否安装成功：</p>
+<pre><code>docker -v
+docker-compose --version
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://img.009898.xyz/i/2023/z7r0mw-0.png" alt="" loading="lazy"></figure>
+<p>创建一个测试目录：</p>
+<pre><code>cd /root
+mkdir composetest
+cd composetest
+</code></pre>
+<p>获取镜像：</p>
+<pre><code>docker pull lizheming/waline
+</code></pre>
+<p>在 composetest 目录下创建 <code>docker-compose.yml</code> 文件，示例:</p>
+<pre><code>version: '3'
+
+services:
+  waline:
+    container_name: waline
+    image: lizheming/waline:latest
+    restart: always
+    ports:
+      - 8360:8360
+    volumes:
+      - ${PWD}/data:/app/data
+    environment:
+      TZ: 'Asia/Shanghai'
+      SQLITE_PATH: '/app/data'
+      JWT_TOKEN: 'Your token'
+      SITE_NAME: 'Your site name'
+      SITE_URL: 'https://example.com'
+      SECURE_DOMAINS: 'example.com'
+      AUTHOR_EMAIL: 'mail@example.com'
+</code></pre>
+<p>在 composetest 目录下创建 data 目录，下载 <a href="https://github.com/walinejs/waline/blob/main/assets/waline.sqlite">waline.sqlite</a> 这个数据库文件：</p>
+<pre><code>cd /root/composetest
+mkdir data
+cd data
+wget https://raw.githubusercontent.com/walinejs/waline/main/assets/waline.sqlite
+</code></pre>
+<p>使用 Compose 命令构建和运行：</p>
+<pre><code>cd /root/composetest
+docker-compose up -d
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://img.009898.xyz/i/2023/z7w7gv-0.png" alt="" loading="lazy"></figure>
+<p>列出所有运行容器：</p>
+<pre><code>docker-compose ps
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://img.009898.xyz/i/2023/z89pqg-0.png" alt="" loading="lazy"></figure>
+<p>访问 <code>ip:端口</code>：<br>
+<img src="https://img.009898.xyz/i/2023/z8dz2w-0.png" alt="" loading="lazy"></p>
+<p><strong>Docker Compose 其它：</strong><br>
+更新容器：<br>
+当服务的配置 .yml 发生更改时，可使用 <code>docker-compose up -d</code> 命令更新配置<br>
+此时，Compose 会删除旧容器并创建新容器，新容器会以不同的 IP 地址加入网络，名称保持不变，任何指向旧容起的连接都会被关闭，重新找到新容器并连接上去。</p>
+<p>启动指定服务已存在的容器：</p>
+<pre><code>docker-compose start xxx
+</code></pre>
+<p>停止已运行的服务的容器：</p>
+<pre><code>docker-compose stop xxx
+</code></pre>
+<p>删除指定服务的容器：</p>
+<pre><code>docker-compose rm xxx
+</code></pre>
+<h2 id="其他命令">其他命令</h2>
+<ol>
+<li>查看容器运行的各种数据，其中IPAddress就是容器IP</li>
+</ol>
+<pre><code>docker inspect 容器id
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85-docker">一键安装 Docker：</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85-docker-compose">安装 Docker compose</a></li>
+<li><a href="#%E5%AE%B9%E5%99%A8">容器</a>
+<ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F">获取镜像：</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%9A%84%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E5%A6%82%E4%B8%8B">查看所有的容器命令如下：</a></li>
+<li><a href="#%E5%81%9C%E6%AD%A2%E5%92%8C%E9%87%8D%E5%90%AF%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8">停止和重启一个容器:</a></li>
+<li><a href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8">进入容器:</a></li>
+<li><a href="#%E5%AF%BC%E5%87%BA%E5%AE%B9%E5%99%A8">导出容器：</a></li>
+<li><a href="#%E5%AF%BC%E5%85%A5%E5%AE%B9%E5%99%A8%E5%BF%AB%E7%85%A7">导入容器快照：</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8">删除容器：</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BE%8B%E5%AD%90%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA-web-%E5%BA%94%E7%94%A8">例子：运行一个 web 应用</a></li>
+<li><a href="#%E9%95%9C%E5%83%8F">镜像</a>
+<ul>
+<li><a href="#%E5%88%97%E5%87%BA%E9%95%9C%E5%83%8F%E5%88%97%E8%A1%A8">列出镜像列表：</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F">删除镜像：</a></li>
+</ul>
+</li>
+<li><a href="#docker-compose">Docker compose</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4">其他命令</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://009898.xyz/post/gridea-shi-yong-yuan-cheng-github-pages-da-jian-jing-tai-bo-ke/">
+              <h3 class="post-title">
+                Gridea 使用 Github Pages 搭建静态博客
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+		<div class="classwaline" id="waline" style="margin-top: 40px;"></div>
+		<script>
+			Waline.init({
+			  el: '#waline',
+			  serverURL: 'https://vercelwaline.009898.xyz',
+			  login: 'disable',
+			  copyright: false,
+			  imageUploader: false,
+			  emoji: [
+			    'https://nl.mark.nom.za/weibo',
+			  ],
+			});
+		</script>
+		
+        <div class="site-footer">
+  Powered by<a href="https://github.com/getgridea/gridea" target="_blank">&nbsp;Gridea</a>
+  <a class="rss" href="https://009898.xyz/atom.xml" target="_blank">
+<!-- 
+    <i class="ri-rss-line"></i>
+-->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 12px;margin-bottom: 2px;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z"></path></svg> RSS
+  </a>
+</div>
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initCopyButtonOnLoad();
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+
+<script>
+	var all_a=document.getElementsByClassName('post-content')[0].getElementsByTagName('a');
+	host_url=window.location.host;
+	for (var i = 0; i < all_a.length; i++) {
+		var domain = all_a[i].href.split("/"); //以“/”进行分割
+		if (domain[2]!=host_url) {
+			all_a[i].target = "_blank";
+		}
+	}
+</script>
+
+  </body>
+</html>
